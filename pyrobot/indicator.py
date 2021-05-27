@@ -13,6 +13,7 @@ from pandas.core.frame import DataFrame
 
 from pyrobot.stock_frame import StockFrame
 
+
 class Indicator():
 
     def _init_(self, price_data_frame: StockFrame) -> None:
@@ -43,7 +44,7 @@ class Indicator():
             return self._indicator_signals
 
     @property
-    def price_data_frame(self) ->pd.DataFrame: 
+    def price_data_frame(self) -> pd.DataFrame:
 
         return self._frame
 
@@ -81,7 +82,7 @@ class Indicator():
 
         # Define the up days.
         self._frame['up_day'] = self._price_groups['change_in_price'].transform(
-            lambda x : np.where(x >=0, x, 0)
+            lambda x: np.where(x >= 0, x, 0)
         )
         self._frame['down_day'] = self._price_groups['change_in_price'].transform(
             lambda x: np.where(x < 0, x.abs(), 0)
